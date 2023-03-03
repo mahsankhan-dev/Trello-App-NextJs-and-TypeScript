@@ -5,20 +5,26 @@ import { AiOutlineEdit, AiOutlineDelete } from "react-icons/ai";
 interface PropsButtons {
   handleEdit: (...arg: any) => void;
   handleDelete: (...arg: any) => void;
-  handleThreeDots: () => any;
-  isOpen: boolean;
 }
 const ThreeDotsButtons: React.FC<PropsButtons> = ({
   handleEdit,
   handleDelete,
-  handleThreeDots,
-  isOpen,
 }) => {
-  // const [isOpen, setIsOpen] = React.useState(false);
+  const [isOpen, setIsOpen] = React.useState(false);
 
-  // const handleThreeDots = () => {
-  //   setIsOpen(!isOpen);
-  // };
+  const handleThreeDots = () => {
+    setIsOpen(!isOpen);
+  };
+
+  const editSection = () => {
+    setIsOpen(false);
+    handleEdit();
+  };
+
+  const deleteSection = () => {
+    setIsOpen(false);
+    handleDelete();
+  };
   return (
     <>
       <div className={styles.threeDots}>
@@ -27,10 +33,10 @@ const ThreeDotsButtons: React.FC<PropsButtons> = ({
       {isOpen ? (
         <div className={styles.threeList}>
           <ul>
-            <li onClick={handleEdit}>
+            <li onClick={editSection}>
               <AiOutlineEdit color="gray" />
             </li>
-            <li onClick={handleDelete}>
+            <li onClick={deleteSection}>
               <AiOutlineDelete color="red" />
             </li>
           </ul>

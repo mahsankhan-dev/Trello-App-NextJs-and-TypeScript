@@ -13,7 +13,6 @@ export default function Home() {
   const [todo, setTodo] = React.useState<myTodo[]>([]);
   const [progress, setProgress] = React.useState<myProgress[]>([]);
   const [done, setDone] = React.useState<myDone[]>([]);
-  const [isOpen, setIsOpen] = React.useState(false);
   const [editValue, setEditValue] = React.useState("");
 
   const handleSelect = (e: React.ChangeEvent<HTMLSelectElement>) => {
@@ -26,10 +25,6 @@ export default function Home() {
 
   const emptyInputFIeld = () => {
     setInput("");
-  };
-
-  const handleThreeDots = () => {
-    setIsOpen(!isOpen);
   };
 
   const addList = () => {
@@ -56,7 +51,6 @@ export default function Home() {
   const handleEdit = (id: string) => {
     setEditValue(id);
     setInput(editValue);
-    setIsOpen(false);
   };
 
   const handleDelete = (id: string, category: string) => {
@@ -67,7 +61,6 @@ export default function Home() {
     } else {
       setTodo((pre) => pre.filter((list) => list.todoApp !== id));
     }
-    setIsOpen(false);
   };
   return (
     <>
@@ -92,8 +85,6 @@ export default function Home() {
               todo={todo}
               handleEdit={handleEdit}
               handleDelete={handleDelete}
-              handleThreeDots={handleThreeDots}
-              isOpen={isOpen}
             />
           </div>
           <div>
@@ -101,8 +92,6 @@ export default function Home() {
               progress={progress}
               handleEdit={handleEdit}
               handleDelete={handleDelete}
-              handleThreeDots={handleThreeDots}
-              isOpen={isOpen}
             />
           </div>
           <div>
@@ -110,8 +99,6 @@ export default function Home() {
               done={done}
               handleEdit={handleEdit}
               handleDelete={handleDelete}
-              handleThreeDots={handleThreeDots}
-              isOpen={isOpen}
             />
           </div>
         </div>

@@ -7,16 +7,8 @@ interface PropsData {
   todo: myTodo[];
   handleEdit: (...arg: any) => void;
   handleDelete: (...arg: any) => void;
-  handleThreeDots: () => void;
-  isOpen: boolean;
 }
-const Todo: React.FC<PropsData> = ({
-  todo,
-  handleEdit,
-  handleDelete,
-  handleThreeDots,
-  isOpen,
-}) => {
+const Todo: React.FC<PropsData> = ({ todo, handleEdit, handleDelete }) => {
   return (
     <>
       {todo ? (
@@ -30,8 +22,8 @@ const Todo: React.FC<PropsData> = ({
                   <ThreeDotsButtons
                     handleEdit={() => handleEdit(item.todoApp)}
                     handleDelete={() => handleDelete(item.todoApp, "Todo")}
-                    handleThreeDots={handleThreeDots}
-                    isOpen={isOpen}
+                    // handleThreeDots={() => handleThreeDots()}
+                    // isOpen={isOpen}
                   />
                 </div>
               </div>

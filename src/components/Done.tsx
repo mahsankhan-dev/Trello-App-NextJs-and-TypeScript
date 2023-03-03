@@ -7,16 +7,8 @@ interface PropsData {
   done: myDone[];
   handleEdit: (...arg: any) => void;
   handleDelete: (...arg: any) => void;
-  handleThreeDots: () => void;
-  isOpen: boolean;
 }
-const Done: React.FC<PropsData> = ({
-  done,
-  handleEdit,
-  handleDelete,
-  handleThreeDots,
-  isOpen,
-}) => {
+const Done: React.FC<PropsData> = ({ done, handleEdit, handleDelete }) => {
   return (
     <>
       {done ? (
@@ -30,8 +22,8 @@ const Done: React.FC<PropsData> = ({
                   <ThreeDotsButtons
                     handleEdit={() => handleEdit(item.todoApp)}
                     handleDelete={() => handleDelete(item.todoApp, "Done")}
-                    handleThreeDots={handleThreeDots}
-                    isOpen={isOpen}
+                    // handleThreeDots={() => handleThreeDots()}
+                    // isOpen={isOpen}
                   />
                 </div>
               </div>

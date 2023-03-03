@@ -7,16 +7,12 @@ interface PropsData {
   progress: myProgress[];
   handleEdit: (...arg: any) => void;
   handleDelete: (...arg: any) => void;
-  handleThreeDots: () => void;
-  isOpen: boolean;
 }
 
 const Progress: React.FC<PropsData> = ({
   progress,
   handleEdit,
   handleDelete,
-  handleThreeDots,
-  isOpen,
 }) => {
   return (
     <>
@@ -31,8 +27,8 @@ const Progress: React.FC<PropsData> = ({
                   <ThreeDotsButtons
                     handleEdit={() => handleEdit(item.todoApp)}
                     handleDelete={() => handleDelete(item.todoApp, "Progress")}
-                    handleThreeDots={handleThreeDots}
-                    isOpen={isOpen}
+                    // handleThreeDots={() => handleThreeDots()}
+                    // isOpen={isOpen}
                   />
                 </div>
               </div>
