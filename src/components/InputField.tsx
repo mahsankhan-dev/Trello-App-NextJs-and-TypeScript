@@ -8,6 +8,7 @@ interface PropsData {
   handleSelect: (...arg: any) => void;
   select: string;
   addList: () => void;
+  input: string;
 }
 
 const InputField: React.FC<PropsData> = ({
@@ -15,6 +16,7 @@ const InputField: React.FC<PropsData> = ({
   handleSelect,
   select,
   addList,
+  input,
 }) => {
   return (
     <>
@@ -23,6 +25,7 @@ const InputField: React.FC<PropsData> = ({
           type="text"
           placeholder="Enter your task"
           onChange={handleInput}
+          value={input}
         />
         <SelectOptions handleSelect={handleSelect} select={select} />
         <Buttons onClick={addList} children={"Add List"} />

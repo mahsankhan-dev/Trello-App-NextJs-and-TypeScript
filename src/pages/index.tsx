@@ -13,6 +13,8 @@ export default function Home() {
   const [todo, setTodo] = React.useState<myTodo[]>([]);
   const [progress, setProgress] = React.useState<myProgress[]>([]);
   const [done, setDone] = React.useState<myDone[]>([]);
+  const [isOpen, setIsOpen] = React.useState(false);
+  const [editValue, setEditValue] = React.useState("");
 
   const handleSelect = (e: React.ChangeEvent<HTMLSelectElement>) => {
     setSelect(e.target.value);
@@ -22,20 +24,50 @@ export default function Home() {
     setInput(e.target.value);
   };
 
+  const emptyInputFIeld = () => {
+    setInput("");
+  };
+
+  const handleThreeDots = () => {
+    setIsOpen(!isOpen);
+  };
+
   const addList = () => {
-    if (select === "Done") {
-      const newTodo: myDone = { todoApp: input };
-      setDone((pre) => [...pre, newTodo]);
-      console.log("done", done);
-    } else if (select === "Progress") {
-      const newTodo: myProgress = { todoApp: input };
-      setProgress((pre) => [...pre, newTodo]);
-      console.log("progress", progress);
+    if (input.replaceAll(" ", "").length > 0) {
+      if (select === "Done") {
+        const newTodo: myDone = { todoApp: input };
+        setDone((pre) => [...pre, newTodo]);
+        console.log("done", done);
+      } else if (select === "Progress") {
+        const newTodo: myProgress = { todoApp: input };
+        setProgress((pre) => [...pre, newTodo]);
+        console.log("progress", progress);
+      } else {
+        const newTodo: myTodo = { todoApp: input };
+        setTodo((pre) => [...pre, newTodo]);
+        console.log("Todo", todo);
+      }
+      emptyInputFIeld();
     } else {
-      const newTodo: myTodo = { todoApp: input };
-      setTodo((pre) => [...pre, newTodo]);
-      console.log("Todo", todo);
+      alert("Please fill the field");
     }
+  };
+
+  const handleEdit = (id: string) => {
+    setEditValue(id);
+    setInput(editValue);
+    setIsOpen(false);
+  };
+
+  const handleDelete = (id: string, category: string) => {
+    if (category === "Done") {
+      setDone((pre) => pre.filter((list) => list.todoApp !== id));
+    } else if (category === "Progress") {
+      setProgress((pre) => pre.filter((list) => list.todoApp !== id));
+    } else {
+      setTodo((pre) => pre.filter((list) => list.todoApp !== id));
+    }
+    setIsOpen(false);
   };
   return (
     <>
@@ -51,17 +83,36 @@ export default function Home() {
           handleSelect={handleSelect}
           select={select}
           addList={addList}
+          input={input}
         />
 
         <div className={styles.main_cards}>
           <div>
-            <Todo todo={todo} />
+            <Todo
+              todo={todo}
+              handleEdit={handleEdit}
+              handleDelete={handleDelete}
+              handleThreeDots={handleThreeDots}
+              isOpen={isOpen}
+            />
           </div>
           <div>
-            <Progress progress={progress} />
+            <Progress
+              progress={progress}
+              handleEdit={handleEdit}
+              handleDelete={handleDelete}
+              handleThreeDots={handleThreeDots}
+              isOpen={isOpen}
+            />
           </div>
           <div>
-            <Done done={done} />
+            <Done
+              done={done}
+              handleEdit={handleEdit}
+              handleDelete={handleDelete}
+              handleThreeDots={handleThreeDots}
+              isOpen={isOpen}
+            />
           </div>
         </div>
       </main>

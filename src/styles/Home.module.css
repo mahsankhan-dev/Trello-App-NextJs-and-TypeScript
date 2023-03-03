@@ -9,10 +9,11 @@
   display: flex;
   gap: 10rem;
   margin-top: 60px;
+  flex-wrap: wrap;
 }
 
 .main_inputs input {
-  padding: 12px 20px;
+  padding: 15px 20px;
   border-top-left-radius: 5px;
   border-bottom-left-radius: 5px;
   width: 300px;
@@ -27,7 +28,7 @@
 }
 
 .main_inputs select {
-  padding: 11px;
+  padding: 14px;
   border: 1px solid #4561c4;
   outline: none;
   color: gray;
@@ -36,7 +37,7 @@
 }
 
 .main_inputs button {
-  padding: 12px;
+  padding: 15px;
   border: 1px solid #4561c4;
   outline: none;
   border-top-right-radius: 5px;
@@ -55,10 +56,10 @@
 
 .todo {
   background: #ebecf0;
-  width: 300px;
+  width: 330px;
   border-radius: 5px;
   padding: 10px;
-  /* min-height: 60px; */
+  box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px 0px;
 }
 
 .todo h1 {
@@ -70,12 +71,53 @@
 .list_parent {
   padding: 10px;
   margin: 15px 0;
-  background: #fff;
+  /* background: #fff; */
   border-radius: 5px;
-  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  box-shadow: rgb(204, 219, 232) 3px 3px 6px 0px inset,
+    rgba(255, 255, 255, 0.5) -3px -3px 6px 1px inset;
+  display: flex;
+  justify-content: space-between;
+  min-height: 100px;
 }
 
 .list_parent p {
-  color: #2f4aac;
+  color: rgb(145, 143, 143);
   font-family: sans-serif;
+}
+
+.threeDots button {
+  background: none;
+  border: none;
+  font-size: 20px;
+  transform: rotate(90deg);
+  cursor: pointer;
+  color: #2f4aac;
+  font-weight: bold;
+}
+
+.threeList {
+  position: relative;
+}
+
+.threeList ul {
+  background-color: white;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  list-style: none;
+  margin: 0;
+  padding: 5px 0;
+  position: absolute;
+  right: 0;
+  top: calc(100% + 5px);
+  z-index: 1;
+}
+
+.threeList ul li {
+  cursor: pointer;
+  padding: 5px;
+  white-space: nowrap;
+}
+
+.threeList ul li:hover {
+  background-color: #f5f5f5;
 }
