@@ -20,7 +20,7 @@ const Done: React.FC<PropsData> = ({ done, handleEdit, handleDelete }) => {
                 <p>{item.todoApp}</p>
                 <div className={styles.actions}>
                   <ThreeDotsButtons
-                    handleEdit={() => handleEdit(item.todoApp)}
+                    handleEdit={() => handleEdit(item.todoApp, "Done")}
                     handleDelete={() => handleDelete(item.todoApp, "Done")}
                     // handleThreeDots={() => handleThreeDots()}
                     // isOpen={isOpen}

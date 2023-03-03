@@ -13,8 +13,6 @@ export default function Home() {
   const [todo, setTodo] = React.useState<myTodo[]>([]);
   const [progress, setProgress] = React.useState<myProgress[]>([]);
   const [done, setDone] = React.useState<myDone[]>([]);
-  const [editValue, setEditValue] = React.useState("");
-
   const handleSelect = (e: React.ChangeEvent<HTMLSelectElement>) => {
     setSelect(e.target.value);
   };
@@ -48,9 +46,15 @@ export default function Home() {
     }
   };
 
-  const handleEdit = (id: string) => {
-    setEditValue(id);
-    setInput(editValue);
+  const handleEdit = (oldTask: string, category: string) => {
+    setInput(oldTask);
+    if (category === "Done") {
+      setDone((pre) => pre.filter((list) => list.todoApp !== oldTask));
+    } else if (category === "Progress") {
+      setProgress((pre) => pre.filter((list) => list.todoApp !== oldTask));
+    } else {
+      setTodo((pre) => pre.filter((list) => list.todoApp !== oldTask));
+    }
   };
 
   const handleDelete = (id: string, category: string) => {

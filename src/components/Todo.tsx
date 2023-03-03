@@ -14,13 +14,13 @@ const Todo: React.FC<PropsData> = ({ todo, handleEdit, handleDelete }) => {
       {todo ? (
         <div className={styles.todo}>
           <h1>Task</h1>
-          {todo.map((item) => {
+          {todo.map((item, index) => {
             return (
               <div className={styles.list_parent}>
                 <p>{item.todoApp}</p>
                 <div className={styles.actions}>
                   <ThreeDotsButtons
-                    handleEdit={() => handleEdit(item.todoApp)}
+                    handleEdit={() => handleEdit(item.todoApp, "Todo")}
                     handleDelete={() => handleDelete(item.todoApp, "Todo")}
                     // handleThreeDots={() => handleThreeDots()}
                     // isOpen={isOpen}

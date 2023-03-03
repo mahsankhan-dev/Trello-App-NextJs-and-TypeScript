@@ -25,7 +25,7 @@ const Progress: React.FC<PropsData> = ({
                 <p>{item.todoApp}</p>
                 <div className={styles.actions}>
                   <ThreeDotsButtons
-                    handleEdit={() => handleEdit(item.todoApp)}
+                    handleEdit={() => handleEdit(item.todoApp, "Progress")}
                     handleDelete={() => handleDelete(item.todoApp, "Progress")}
                     // handleThreeDots={() => handleThreeDots()}
                     // isOpen={isOpen}
