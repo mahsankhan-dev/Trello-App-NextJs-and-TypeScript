@@ -6,6 +6,7 @@ import Progress from "@/components/Progress";
 import Done from "@/components/Done";
 import { myTodo, myProgress, myDone } from "@/interfaces/todo";
 import InputField from "@/components/InputField";
+import { DropResult } from "react-beautiful-dnd";
 
 export default function Home() {
   const [select, setSelect] = React.useState<string>("");
@@ -66,6 +67,38 @@ export default function Home() {
       setTodo((pre) => pre.filter((list) => list.todoApp !== id));
     }
   };
+
+  const onDragEnd = (result: DropResult, category: string) => {
+    if (category === "Task") {
+      const { source, destination } = result;
+      if (!destination) return;
+
+      const items = Array.from(todo);
+      const [newOrder] = items.splice(source.index, 1);
+      items.splice(destination.index, 0, newOrder);
+
+      setTodo(items);
+    } else if (category === "Progress") {
+      const { source, destination } = result;
+      if (!destination) return;
+
+      const items = Array.from(progress);
+      const [newOrder] = items.splice(source.index, 1);
+      items.splice(destination.index, 0, newOrder);
+
+      setProgress(items);
+    } else {
+      const { source, destination } = result;
+      if (!destination) return;
+
+      const items = Array.from(done);
+      const [newOrder] = items.splice(source.index, 1);
+      items.splice(destination.index, 0, newOrder);
+
+      setDone(items);
+    }
+  };
+
   return (
     <>
       <Head>
@@ -89,6 +122,7 @@ export default function Home() {
               todo={todo}
               handleEdit={handleEdit}
               handleDelete={handleDelete}
+              onDragEnd={onDragEnd}
             />
           </div>
           <div>
@@ -96,6 +130,7 @@ export default function Home() {
               progress={progress}
               handleEdit={handleEdit}
               handleDelete={handleDelete}
+              onDragEnd={onDragEnd}
             />
           </div>
           <div>
@@ -103,6 +138,7 @@ export default function Home() {
               done={done}
               handleEdit={handleEdit}
               handleDelete={handleDelete}
+              onDragEnd={onDragEnd}
             />
           </div>
         </div>
