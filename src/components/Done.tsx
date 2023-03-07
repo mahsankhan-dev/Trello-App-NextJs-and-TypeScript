@@ -10,7 +10,6 @@ interface PropsData {
   handleDelete: (...arg: any) => void;
   onDragEnd: (...arg: any) => void;
 }
-const uniqueId = Math.random().toString(36);
 
 const Done: React.FC<PropsData> = ({
   done,
@@ -18,6 +17,7 @@ const Done: React.FC<PropsData> = ({
   handleDelete,
   onDragEnd,
 }) => {
+  const uniqueId = Math.random().toString(36);
   return (
     <>
       <DragDropContext onDragEnd={(results) => onDragEnd(results)}>
